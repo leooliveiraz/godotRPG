@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Arbusto.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://resources/World/DirtTileset.png" type="Texture" id=4]
 [ext_resource path="res://resources/World/CliffTileset.png" type="Texture" id=5]
 [ext_resource path="res://Matinho.tscn" type="PackedScene" id=6]
-[ext_resource path="res://EfeitoMatinho.tscn" type="PackedScene" id=7]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -545,7 +544,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 0/z_index = 0
 
-[node name="Node2D" type="Node2D"]
+[node name="World" type="Node2D"]
 position = Vector2( 0.364868, 2.36047 )
 
 [node name="GrassBackground" type="Sprite" parent="."]
@@ -593,26 +592,30 @@ position = Vector2( 35.8529, 101.207 )
 [node name="Arbusto2" parent="Node2D/Arbustos" instance=ExtResource( 2 )]
 position = Vector2( 196.672, 47.4073 )
 
-[node name="Node2D" parent="Node2D/Arbustos" instance=ExtResource( 2 )]
-position = Vector2( 63.8399, 145.931 )
+[node name="Arbusto4" parent="Node2D/Arbustos" instance=ExtResource( 2 )]
+position = Vector2( 61.9522, 140.268 )
 
-[node name="Node2D" parent="Node2D/Arbustos/Node2D" instance=ExtResource( 6 )]
-position = Vector2( 116.097, -51.9131 )
+[node name="Arbusto5" parent="Node2D/Arbustos" instance=ExtResource( 2 )]
+position = Vector2( 263.941, 5.29423 )
 
-[node name="Node2D2" parent="Node2D/Arbustos/Node2D" instance=ExtResource( 6 )]
-position = Vector2( -47.1937, -6.60712 )
+[node name="Arbusto6" parent="Node2D/Arbustos" instance=ExtResource( 2 )]
+position = Vector2( 45.9063, 8.12586 )
 
-[node name="Node2D3" parent="Node2D/Arbustos/Node2D" instance=ExtResource( 6 )]
-position = Vector2( 57.5764, -133.086 )
+[node name="YSort" type="YSort" parent="Node2D"]
 
-[node name="Node2D2" parent="Node2D/Arbustos" instance=ExtResource( 2 )]
-position = Vector2( 241.288, 97.7939 )
+[node name="Matinho3" parent="Node2D/YSort" instance=ExtResource( 6 )]
+position = Vector2( 122.36, 124.222 )
 
-[node name="Node2D3" parent="Node2D/Arbustos" instance=ExtResource( 2 )]
-position = Vector2( 71.391, 15.6769 )
+[node name="Matinho" parent="Node2D/YSort" instance=ExtResource( 6 )]
 
-[node name="Node2D4" parent="Node2D/Arbustos" instance=ExtResource( 2 )]
-position = Vector2( 250.727, 5.29423 )
+[node name="Matinho2" parent="Node2D/YSort" instance=ExtResource( 6 )]
+position = Vector2( 248.239, 99.1068 )
 
-[node name="AnimatedMatinho" parent="." instance=ExtResource( 7 )]
-position = Vector2( 126.136, 127.998 )
+[node name="Node2D" parent="Node2D/YSort" instance=ExtResource( 6 )]
+position = Vector2( 129.911, 19.4524 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 254.503, 132.717 )
+
+[node name="Node2D3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 23.2534, 137.437 )
