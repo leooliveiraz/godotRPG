@@ -18,10 +18,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.09, 0.17, 0.26, 0.34 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 36, 36, 37, 38, 39 ]
+"values": [ 36, 37, 38, 39 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -352,7 +352,7 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 60
-frame = 12
+frame = 28
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.529739, 10.3297 )
@@ -378,6 +378,6 @@ tree_root = SubResource( 26 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 27 )
-parameters/Atacando/blend_position = Vector2( -0.00246912, -0.0153847 )
+parameters/Atacando/blend_position = Vector2( 0.0864197, -0.592308 )
 parameters/Correndo/blend_position = Vector2( 0.0162162, -0.0948275 )
 parameters/Parado/blend_position = Vector2( 0, 0 )
