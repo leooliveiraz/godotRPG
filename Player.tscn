@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://resources/Player/Player.png" type="Texture" id=2]
@@ -352,17 +352,187 @@ tracks/0/keys = {
 "values": [ 12 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="Animation" id=14]
+resource_name = "RolarBaixo"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 55, 56, 57, 58, 59 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "roll_animation_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "RolarCima"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 45, 46, 47, 48, 49 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "roll_animation_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "RolarDireita"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 40, 41, 42, 43, 44 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "roll_animation_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "RolarEsquerda"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 51, 52, 53, 54, 55 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "roll_animation_finished"
+} ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "AtaqueEsquerda"
 
-[sub_resource type="AnimationNodeAnimation" id=29]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "AtaqueBaixo"
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "AtaqueDireita"
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=21]
 animation = "AtaqueCima"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=22]
+blend_point_0/node = SubResource( 18 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 19 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 20 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 21 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "CorrerEsq"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "CorrerBaixo"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "CorrerDir"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "CorrerCim"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=27]
+blend_point_0/node = SubResource( 23 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 24 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 25 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 26 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "ParadoEsq"
+
+[sub_resource type="AnimationNodeAnimation" id=29]
+animation = "ParadoBai"
+
+[sub_resource type="AnimationNodeAnimation" id=30]
+animation = "ParadoDir"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "ParadoCim"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=32]
 blend_point_0/node = SubResource( 28 )
@@ -375,74 +545,63 @@ blend_point_3/node = SubResource( 31 )
 blend_point_3/pos = Vector2( 0, -1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=14]
-animation = "CorrerEsq"
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "RolarEsquerda"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "CorrerBaixo"
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "RolarDireita"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "CorrerDir"
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "RolarCima"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "CorrerCim"
+[sub_resource type="AnimationNodeAnimation" id=36]
+animation = "RolarBaixo"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=18]
-blend_point_0/node = SubResource( 14 )
+[sub_resource type="AnimationNodeAnimation" id=37]
+animation = "RolarCima"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=38]
+blend_point_0/node = SubResource( 33 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 15 )
-blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 16 )
-blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 17 )
-blend_point_3/pos = Vector2( 0, -1 )
+blend_point_1/node = SubResource( 34 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 35 )
+blend_point_2/pos = Vector2( 0, 0 )
+blend_point_3/node = SubResource( 36 )
+blend_point_3/pos = Vector2( 0, 1 )
+blend_point_4/node = SubResource( 37 )
+blend_point_4/pos = Vector2( 0, -0.99 )
+snap = Vector2( 0.01, 0.01 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=19]
-animation = "ParadoEsq"
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
 
-[sub_resource type="AnimationNodeAnimation" id=20]
-animation = "ParadoBai"
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
 
-[sub_resource type="AnimationNodeAnimation" id=21]
-animation = "ParadoDir"
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
 
-[sub_resource type="AnimationNodeAnimation" id=22]
-animation = "ParadoCim"
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
 
-[sub_resource type="AnimationNodeBlendSpace2D" id=23]
-blend_point_0/node = SubResource( 19 )
-blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 20 )
-blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 21 )
-blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 22 )
-blend_point_3/pos = Vector2( 0, -1 )
-blend_mode = 1
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-
-[sub_resource type="AnimationNodeStateMachine" id=26]
-states/Atacando/node = SubResource( 32 )
+[sub_resource type="AnimationNodeStateMachine" id=45]
+states/Atacando/node = SubResource( 22 )
 states/Atacando/position = Vector2( 334, 238.2 )
-states/Correndo/node = SubResource( 18 )
+states/Correndo/node = SubResource( 27 )
 states/Correndo/position = Vector2( 568, 130 )
-states/Parado/node = SubResource( 23 )
+states/Parado/node = SubResource( 32 )
 states/Parado/position = Vector2( 334, 130 )
-transitions = [ "Parado", "Correndo", SubResource( 24 ), "Correndo", "Parado", SubResource( 25 ), "Parado", "Atacando", SubResource( 33 ), "Atacando", "Parado", SubResource( 34 ) ]
+states/Rolando/node = SubResource( 38 )
+states/Rolando/position = Vector2( 112, 130 )
+transitions = [ "Parado", "Correndo", SubResource( 39 ), "Correndo", "Parado", SubResource( 40 ), "Parado", "Atacando", SubResource( 41 ), "Atacando", "Parado", SubResource( 42 ), "Rolando", "Parado", SubResource( 43 ), "Parado", "Rolando", SubResource( 44 ) ]
 start_node = "Parado"
 graph_offset = Vector2( -43, 77.2 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=46]
 
-[sub_resource type="CapsuleShape2D" id=35]
+[sub_resource type="CapsuleShape2D" id=47]
 height = 12.0
 
 [node name="Player" type="KinematicBody2D"]
@@ -456,7 +615,6 @@ hframes = 60
 frame = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0.529739, 10.3297 )
 rotation = 1.57079
 shape = SubResource( 1 )
@@ -474,19 +632,24 @@ anims/ParadoBai = SubResource( 10 )
 anims/ParadoCim = SubResource( 11 )
 anims/ParadoDir = SubResource( 12 )
 anims/ParadoEsq = SubResource( 13 )
+anims/RolarBaixo = SubResource( 14 )
+anims/RolarCima = SubResource( 15 )
+anims/RolarDireita = SubResource( 16 )
+anims/RolarEsquerda = SubResource( 17 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 26 )
+tree_root = SubResource( 45 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 27 )
+parameters/playback = SubResource( 46 )
 parameters/Atacando/blend_position = Vector2( 0.276543, 0.115385 )
 parameters/Correndo/blend_position = Vector2( 0.0162162, -0.0948275 )
 parameters/Parado/blend_position = Vector2( 0, 0 )
+parameters/Rolando/blend_position = Vector2( 0.703704, -0.0258621 )
 
 [node name="HitboxPivot" type="Position2D" parent="."]
 position = Vector2( 3.05176e-05, 2.52269 )
-rotation = 3.14159
+rotation = 1.5708
 __meta__ = {
 "_gizmo_extents_": 16.0
 }
@@ -496,7 +659,7 @@ position = Vector2( 15, 0 )
 collision_mask = 8
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
-shape = SubResource( 35 )
+shape = SubResource( 47 )
 disabled = true
 
 [editable path="HitboxPivot/SwordHitbox"]

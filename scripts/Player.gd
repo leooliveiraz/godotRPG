@@ -3,9 +3,11 @@ extends KinematicBody2D
 
 
 var velocity = Vector2.ZERO
+var roll_vector = Vector2.LEFT
 var ACELERATION = 100
 var MAX_SPEED = 100
-var FRICTION = 150
+var ROLL_SPEED = 111
+var FRICTION = 450
 
 enum{
 	MOVE,
@@ -17,10 +19,11 @@ var state
 onready var animation = $AnimationPlayer	
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
-
+onready var swordHitobox = $HitboxPivot/SwordHitbox
 
 func _ready():
 	animationTree.active = true
+	swordHitobox.knockback_vector = roll_vector
 	state = MOVE
 	
 func _process(delta):
@@ -28,10 +31,9 @@ func _process(delta):
 		MOVE:
 			move_state(delta)
 		ROLL:
-			pass
+			roll_state(delta)
 		ATTACK:
 			attack_state(delta)
-			pass
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -40,9 +42,12 @@ func move_state(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
+		roll_vector = input_vector
+		swordHitobox.knockback_vector = input_vector
 		animationTree.set("parameters/Parado/blend_position", input_vector)
 		animationTree.set("parameters/Correndo/blend_position", input_vector)
 		animationTree.set("parameters/Atacando/blend_position", input_vector)
+		animationTree.set("parameters/Rolando/blend_position", input_vector)
 		animationState.travel("Correndo")
 			
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACELERATION * delta)
@@ -50,15 +55,27 @@ func move_state(delta):
 		animationState.travel("Parado")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 		
-	velocity = move_and_slide(velocity)
+	move()
+	
 	if Input.is_action_just_pressed("ui_espace"):
 		state = ATTACK
+	if Input.is_action_just_pressed("ui_z"):
+		state = ROLL
 
 func attack_state(delta):	
 	animationState.travel("Atacando")
 	
 func roll_state(delta):	
-	pass
-
+	velocity = roll_vector * ROLL_SPEED
+	animationState.travel("Rolando")
+	move()
+	
+func move():
+	velocity = move_and_slide(velocity)
+	
 func attack_animation_finished():
+	state = MOVE
+
+func roll_animation_finished():
+	velocity = velocity * 0.8
 	state = MOVE
