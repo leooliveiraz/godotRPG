@@ -552,7 +552,7 @@ position = Vector2( 0.364868, 2.36047 )
 texture = ExtResource( 3 )
 offset = Vector2( 160, 90 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 336, 192 )
+region_rect = Rect2( 0, 0, 1200, 368 )
 
 [node name="DirthPathTileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )

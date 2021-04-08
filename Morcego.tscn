@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/Morcego.gd" type="Script" id=1]
 [ext_resource path="res://resources/Shadows/SmallShadow.png" type="Texture" id=2]
 [ext_resource path="res://resources/Bat.png" type="Texture" id=3]
 [ext_resource path="res://Hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Status.tscn" type="PackedScene" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -67,6 +68,10 @@ collision_layer = 2147483656
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( -0.840897, -13.4544 )
 shape = SubResource( 8 )
+
+[node name="Status" parent="." instance=ExtResource( 5 )]
+max_health = 2
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="Status" to="." method="_on_Status_no_health"]
 
 [editable path="Hurtbox"]

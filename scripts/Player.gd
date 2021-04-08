@@ -4,10 +4,10 @@ extends KinematicBody2D
 
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.LEFT
-var ACELERATION = 100
-var MAX_SPEED = 100
-var ROLL_SPEED = 111
-var FRICTION = 450
+export var ACELERATION = 100
+export var MAX_SPEED = 100
+export var ROLL_SPEED = 111
+export var FRICTION = 450
 
 enum{
 	MOVE,
