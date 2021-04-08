@@ -15,13 +15,15 @@ enum{
 	ATTACK
 }
 var state
-
+var status = PlayerStatus
 onready var animation = $AnimationPlayer	
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitobox = $HitboxPivot/SwordHitbox
+onready var hurtbox = $Hurtbox
 
 func _ready():
+	status.connect("no_health",self,"queue_free")
 	animationTree.active = true
 	swordHitobox.knockback_vector = roll_vector
 	state = MOVE
@@ -79,3 +81,9 @@ func attack_animation_finished():
 func roll_animation_finished():
 	velocity = velocity * 0.8
 	state = MOVE
+
+
+func _on_Hurtbox_area_entered(area):
+	status.health -= 1
+	hurtbox.iniciar_invencibilidade(.5)
+	hurtbox.criar_efeito_hit()

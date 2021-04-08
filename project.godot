@@ -19,6 +19,10 @@ config/name="RpgExample"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerStatus="*res://PlayerStatus.tscn"
+
 [display]
 
 window/size/width=320
