@@ -1,11 +1,12 @@
 extends Node2D
 
+const EfeitoMatinho = preload("res://EfeitoMatinho.tscn")
+
 func create_grass_effect():
-		var EfeitoMatinho = load("res://EfeitoMatinho.tscn")
 		var efeitoMatinho = EfeitoMatinho.instance()
 		efeitoMatinho.global_position = global_position
-		var world = get_tree().current_scene
-		world.add_child(efeitoMatinho)
+		get_parent().add_child(efeitoMatinho)
+		
 
 
 
