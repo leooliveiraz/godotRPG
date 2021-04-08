@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 PlayerStatus="*res://PlayerStatus.tscn"
+UiVida="*res://UIVida.tscn"
 
 [display]
 

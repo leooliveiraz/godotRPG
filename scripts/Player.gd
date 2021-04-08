@@ -22,6 +22,7 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitobox = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
 
+
 func _ready():
 	status.connect("no_health",self,"queue_free")
 	animationTree.active = true
