@@ -5,6 +5,7 @@ const EfeitoMorteInimigo = preload("res://EfeitoMorteInimigo.tscn")
 onready var status = $Status
 onready var playerDetection = $PlayerDetectionZone
 onready var sprite = $AnimatedSprite
+onready var wanderControll = $WanderControll
 
 var knockback = Vector2.ZERO
 var forca = 80
@@ -13,6 +14,7 @@ var velocidade = Vector2.ZERO
 export var ACELERACAO = 30
 export var VELOCIDADE_MAX = 80
 export var FRICCAO = 200
+export var WANDER_TARGET_RANGE = 4
 
 enum {
 	IDLE,
@@ -20,7 +22,7 @@ enum {
 	CHASE
 }
 
-var estado = IDLE
+var estado = pick_new_state([IDLE,WANDER])
 
 func _ready():
 	print(status.max_health, status.health)
@@ -31,28 +33,49 @@ func _physics_process(delta):
 	
 	match estado:
 		IDLE:
-			velocidade == velocidade.move_toward(Vector2.ZERO, FRICCAO * delta)
-			player_avistado()
+			idle(delta)
 		WANDER:
-			pass
+			wander(delta)
 		CHASE:
 			chase_player(delta)
 	velocidade = move_and_slide(velocidade)
 	
+func idle(delta): 
+	velocidade == velocidade.move_toward(Vector2.ZERO, FRICCAO * delta)
+	player_avistado()
+	if wanderControll.get_time_left() <= 0:
+		estado = pick_new_state([IDLE,WANDER])
+		wanderControll.start_wander_timer(rand_range(1,3))
+
+func wander(delta):
+	player_avistado()
+	if wanderControll.get_time_left() == 0:
+		estado = pick_new_state([IDLE,WANDER])
+		wanderControll.start_wander_timer(rand_range(1,3))
+	
+	var direcao = global_position.direction_to(wanderControll.target_position)
+	velocidade = velocidade.move_toward(direcao * VELOCIDADE_MAX, ACELERACAO * delta)
+	
+	if global_position.distance_to(wanderControll.target_position) <= WANDER_TARGET_RANGE:
+		estado = pick_new_state([IDLE,WANDER])
+		wanderControll.start_wander_timer(rand_range(1,3))
 
 func chase_player(delta):
 	var player = playerDetection.player
 	if player != null:
-		var direcao = (player.global_position - global_position).normalized()
+		var direcao = global_position.direction_to(player.global_position)
 		velocidade = velocidade.move_toward(direcao * VELOCIDADE_MAX, ACELERACAO * delta)
-		sprite.flip_h = velocidade.x < 0
 	else:
-		velocidade = Vector2.ZERO
 		estado = IDLE
+	sprite.flip_h = velocidade.x < 0
 		
 func player_avistado():
 	if playerDetection.pode_ver_jogador():
 		estado = CHASE
+	
+func pick_new_state(state_list):
+	state_list.shuffle()
+	return state_list.pop_front()
 	
 func _on_Hurtbox_area_entered(area):
 	if area.get('damage'):

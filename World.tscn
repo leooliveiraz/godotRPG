@@ -623,16 +623,22 @@ position = Vector2( 254.503, 132.717 )
 position = Vector2( 23.2534, 137.437 )
 
 [node name="Morcego" parent="Node2D" instance=ExtResource( 7 )]
-position = Vector2( 217.87, 105.297 )
+position = Vector2( 51.9137, -23.3082 )
 
 [node name="Morcego2" parent="Node2D" instance=ExtResource( 7 )]
-position = Vector2( 95.5401, 138.531 )
+position = Vector2( 238.43, 89.4343 )
 
 [node name="Morcego3" parent="Node2D" instance=ExtResource( 7 )]
-position = Vector2( 29.072, 35.2936 )
+position = Vector2( 58.3212, 131.813 )
 
 [node name="Morcego4" parent="Node2D" instance=ExtResource( 7 )]
-position = Vector2( 163.422, 43.7789 )
+position = Vector2( 218.3, 169.953 )
+
+[node name="Morcego5" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( 144.138, 2.55832 )
+
+[node name="Morcego6" parent="Node2D" instance=ExtResource( 7 )]
+position = Vector2( -82.5874, 78.8397 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
